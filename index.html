@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NitiMitra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="nav" id="nav">
+            <div class="menuHandle" id="menuHandle">
+                <i class="fa-solid fa-bars" onclick="menuViewControl()"></i>
+            </div>
+            <div class="logo">
+                <img src="logo.jpg" alt="logo" height="100%" width="100%">
+            </div>
+            <div class="rightOption">
+                <div class="microphone" id="Start" onclick="mic()">
+                    <i class="fa-solid fa-microphone" id="microph"></i>
+                </div>
+                <div class="mode" id="mode" onclick="darkMode()">
+                    <i class="fa-solid fa-moon" id="modicon"></i>
+                </div>
+                <div class="fontchange" id="fontchange">
+                    <i class="fa-solid fa-spell-check"></i>
+                </div>
+                <div class="languageOption" id="languageOption">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+            </div>
+        </div>
+        <div class="botBody" id="botBody">
+            <div class="leftMenu" id="Menubar">
+                <div class="option" id="op1"><span>Home</span></div>
+                <div class="option" id="op2"><span>Acts & Rules</span></div>
+                <div class="option" id="LOJ" onclick="LoJsubMenu()"><span>List of Judge</span></div>
+                <div class="option" id="op4"><span>Guideline</span></div>
+                <div class="option" id="Justic" onclick="justicMEnu()"><span>Justic</span></div>
+                <div class="option" id="op6"><span>Tele low</span></div>
+            </div>
+            
+            <div class="rightChat" id="rightChat">
+                <div class="viewNone" id="LOJMenu">
+                    <div class="suboption" id="subop1"><span>High</span></div>
+                    <div class="suboption" id="subop2"><span>Supreme</span></div>
+                    <div class="suboption" id="subop3"><span>Vacancy</span></div>
+                </div>
+                
+                <div class="viewNone" id="JusticMenu">
+                    <div class="suboption" id="jusop1"><span>High court</span></div>
+                    <div class="suboption" id="jusop2"><span>Supreme court</span></div>
+                    <div class="suboption" id="jusop3"><span>District court</span></div>
+                    <div class="suboption" id="jusop3"><span>Subordinate court</span></div>
+                    <div class="suboption" id="jusop3"><span>Specialized Courts</span></div>
+                </div>
+                <div class="req-res" id="req-res">
+                    <!-- response from chatbot -->
+                    <!-- <div class="response">
+
+                    </div> -->
+                    <!-- send from user -->
+                     <!-- <div class="request">
+                        
+                    </div> -->
+                </div>
+
+
+                <div class="bottumInput" id="buttomInput">
+                    <div class="fileLink">
+                        <i class="fa-solid fa-paperclip"></i>
+                    </div>
+                    <div class="searchInput">
+                        <input type="text" id="written" placeholder="Message NitiMitra">
+                    </div>
+                    <div class="sendButton" onclick="sendreq()">
+                        <i class="fa-solid fa-arrow-up" id="send"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="viewNone" id="voiceBody">
+        <div class="main2">
+            <div class="mainbody">
+                <div class="immage">
+                    <img src="./voice.png" height="50%">
+                </div>
+                <div class="loading">
+                    <h1>Listening...</h1>
+                </div>
+            </div>
+        </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
