@@ -59,7 +59,7 @@ body{
     position: absolute;
     right: 0px;
     height: 75%;
-    width: 320px;
+    width: 400px;
     margin-right: 25px;
     /* border: 1px solid white; */
     display: flex;
@@ -67,7 +67,7 @@ body{
     /* border-radius: 15px;
     overflow: hidden; */
 }
-.microphone,.mode,.fontchange,.languageOption{
+.microphone,.mode,.fontchange{
     height: 100%;
     width: 80px;
     color: white;
@@ -78,6 +78,33 @@ body{
     border-radius: 15px;
     background-color: rgb(33, 33, 33);
     /* border: 1px solid rgb(165, 165, 165); */
+    cursor: pointer;
+}
+.languageOption{
+    height: 100%;
+    width: 160px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    border-radius: 15px;
+    background-color: rgb(33, 33, 33);
+    /* border: 1px solid rgb(165, 165, 165); */
+    cursor: pointer;
+}
+.languageOption select{
+    height: 80%;
+    width: 80%;
+    color: white;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    background-color: transparent;cursor: pointer;
+}
+.languageOption select option{
+    background-color: black;
+    color: white;
     cursor: pointer;
 }
 .microphone:hover,.mode:hover,.fontchange:hover,.languageOption:hover{
@@ -233,11 +260,18 @@ div.suboption:hover{
     height: 83%;
     width: 100%;
     background-color: transparent;
-    position: relative;
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: scroll;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-end;
 }
 .response{
-    left: 3px;
-    position: absolute;
+    /* left: 3px;
+    position: absolute; */
     height: auto;
     width: 70%;
     font-size: 21px;
@@ -246,8 +280,8 @@ div.suboption:hover{
     background-color: black;
 }
 .request{
-    right: 3px;
-    position: absolute;
+    /* right: 3px;
+    position: absolute; */
     height: auto;
     max-width: 70%;
     font-size: 21px;

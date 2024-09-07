@@ -70,32 +70,84 @@ function mic(){
 
 let voiceBody=document.getElementById("voiceBody");
 let Start=document.getElementById("Start");
-// let Stop=document.getElementById("Stop");
 let written=document.getElementById("written");
+
+
 Start.addEventListener('click', function() {
     var speech = true; 
     window.SpeechRecognition = window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognition.interimResults = true;
 
+    const selectedLanguage = document.getElementById("language-select").value;
+    recognition.lang = selectedLanguage; 
+
     recognition.addEventListener('result', e => {
         const transcript = Array.from(e.results)
             .map(result => result[0])
-            .map(result => result.transcript);
+            .map(result => result.transcript)
+            .join(''); 
+        
         written.value = transcript;
+
+        // let responseText = '';
+        // if (transcript.toLowerCase().includes('hello')) {
+        //     responseText = 'Hello! How can I help you today?';
+        // } else if (transcript.toLowerCase().includes('how are you')) {
+        //     responseText = 'I am doing great, thank you!';
+        // } else {
+        //     responseText = "I didn't understand that.";
+        // }
+
+        // speak(responseText, recognition.lang);
     });
 
-
     recognition.addEventListener('end', () => {
-        let voiceBody=document.getElementById("voiceBody");
+        let voiceBody = document.getElementById("voiceBody");
         voiceBody.classList.toggle("VoiceBody");
         voiceBody.classList.toggle("viewNone");
     });
 
     if (speech == true) {
-        recognition.start()
+        let voiceBody = document.getElementById("voiceBody");
+        voiceBody.classList.toggle("viewNone");
+        recognition.start();
     }
 });
+
+// function speak(text, lang) {
+//     const utterance = new SpeechSynthesisUtterance(text);
+//     utterance.lang = lang;
+//     // window.speechSynthesis.speak(utterance);
+// }
+
+
+
+// Start.addEventListener('click', function() {
+//     var speech = true; 
+//     window.SpeechRecognition = window.webkitSpeechRecognition;
+//     const recognition = new SpeechRecognition();
+//     recognition.interimResults = true;
+
+//     recognition.addEventListener('result', e => {
+//         const transcript = Array.from(e.results)
+//             .map(result => result[0])
+//             .map(result => result.transcript)
+//             .join('');
+//         written.value = transcript;
+//     });
+
+
+//     recognition.addEventListener('end', () => {
+//         let voiceBody=document.getElementById("voiceBody");
+//         voiceBody.classList.toggle("VoiceBody");
+//         voiceBody.classList.toggle("viewNone");
+//     });
+
+//     if (speech == true) {
+//         recognition.start()
+//     }
+// });
 
 
 //send the msg
@@ -106,9 +158,16 @@ function sendreq(){
     let count="";
     let written=document.getElementById("written");
     let text=written.value;
-    written.value="";
-    count +=`<div class="reqest" style="right: 3px; position: absolute; height: auto; max-width: 70%; font-size: 21px; color: white; padding: 10px; border-radius: 15px; background-color: black;">${text}</div>`;
-    right.innerHTML=count;
+    if(text==""){
+        alert("Please write something !!!");
+    }
+    else
+    {
+        console.log(text)
+        written.value="";
+        count =`<div class="reqest" style="height: auto; max-width: 70%; font-size: 21px; color: white; padding: 10px; border-radius: 15px; background-color: black;">${text}</div>`;
+        right.innerHTML+=count;
+    }
 }
 
 // function darkMode(){
