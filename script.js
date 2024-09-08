@@ -170,6 +170,14 @@ function sendreq(){
     }
 }
 
+//supreme court judge link 
+
+
+function supremJudge() {
+    window.open("https://www.sci.gov.in/chief-justice-judges/", "_blank");
+  }
+
+
 // function darkMode(){
 //     if(flag==false){
 //         flag=true;
