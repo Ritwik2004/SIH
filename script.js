@@ -177,6 +177,9 @@ function supremJudge() {
     window.open("https://www.sci.gov.in/chief-justice-judges/", "_blank");
   }
 
+  function highCourt(){
+    window.open("./hightcourtJudge.html")
+  }
 
 // function darkMode(){
 //     if(flag==false){
