@@ -74,52 +74,71 @@ let written=document.getElementById("written");
 
 
 Start.addEventListener('click', function() {
-    var speech = true; 
+    var speech = true;
     window.SpeechRecognition = window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognition.interimResults = true;
-
-    const selectedLanguage = document.getElementById("language-select").value;
-    recognition.lang = selectedLanguage; 
+    recognition.lang = document.getElementById("language-select").value; // Select language
+    
+    let hasResponded = false; // To avoid multiple replies for the same input
 
     recognition.addEventListener('result', e => {
-        const transcript = Array.from(e.results)
+        let transcript = Array.from(e.results)
             .map(result => result[0])
             .map(result => result.transcript)
-            .join(''); 
-        
+            .join('')
+            .trim()
+            .toLowerCase(); // Clean the transcript
+
         written.value = transcript;
 
-        // let responseText = '';
-        // if (transcript.toLowerCase().includes('hello')) {
-        //     responseText = 'Hello! How can I help you today?';
-        // } else if (transcript.toLowerCase().includes('how are you')) {
-        //     responseText = 'I am doing great, thank you!';
-        // } else {
-        //     responseText = "I didn't understand that.";
-        // }
+        if (e.results[0].isFinal && !hasResponded) { // Only respond when speech is final
+            let responseText = '';
 
-        // speak(responseText, recognition.lang);
+            // Match various phrases
+            if (transcript.includes('hello')) {
+                responseText = 'Hello! How can I help you today?';
+            } else if (transcript.includes('how are you')) {
+                responseText = 'I am doing great, thank you!';
+            } else if (transcript.includes('what is your name')) {
+                responseText = 'my name is nitimitra, an ai chatbot';
+            } else {
+                responseText = "I didn't understand that.";
+            }
+
+            speak(responseText, recognition.lang); // Respond
+            hasResponded = true; // Prevent multiple responses
+        }
     });
 
     recognition.addEventListener('end', () => {
+        hasResponded = false; // Reset the flag after recognition ends
         let voiceBody = document.getElementById("voiceBody");
         voiceBody.classList.toggle("VoiceBody");
         voiceBody.classList.toggle("viewNone");
     });
 
-    if (speech == true) {
+    if (speech) {
         let voiceBody = document.getElementById("voiceBody");
         voiceBody.classList.toggle("viewNone");
         recognition.start();
     }
 });
 
-// function speak(text, lang) {
-//     const utterance = new SpeechSynthesisUtterance(text);
-//     utterance.lang = lang;
-//     // window.speechSynthesis.speak(utterance);
-// }
+// Function to handle text-to-speech
+function speak(text, lang) {
+    const speechSynthesis = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    speechSynthesis.speak(utterance);
+}
+
+
+
+
+
+
+
 
 
 
@@ -129,25 +148,64 @@ Start.addEventListener('click', function() {
 //     const recognition = new SpeechRecognition();
 //     recognition.interimResults = true;
 
+//     let hasSpoken = false; // Flag to ensure speech happens once
+
+//     const selectedLanguage = document.getElementById("language-select").value;
+//     recognition.lang = selectedLanguage; 
+
 //     recognition.addEventListener('result', e => {
 //         const transcript = Array.from(e.results)
 //             .map(result => result[0])
 //             .map(result => result.transcript)
-//             .join('');
+//             .join('').trim().toLowerCase(); // Clean transcript
+        
 //         written.value = transcript;
+
+//         let responseText = '';
+
+//         // Improved condition checking for phrases
+//         if (transcript.includes('name')) {
+//             responseText = 'I am your voice assistant!';
+//         } else if (transcript.includes('how are you')) {
+//             responseText = 'I am doing great, thank you!';
+//         } else if (transcript.includes('what is your name')) {
+//             responseText = 'I am your voice assistant!';
+//         } else {
+//             responseText = "I didn't understand that.";
+//         }
+
+//         // Only speak if the flag has not been set yet
+//         if (!hasSpoken) {
+//             speak(responseText, recognition.lang);
+//             hasSpoken = true; // Set the flag to true so it doesn't repeat
+//         }
 //     });
 
-
 //     recognition.addEventListener('end', () => {
-//         let voiceBody=document.getElementById("voiceBody");
+//         hasSpoken = false; // Reset the flag for the next recognition cycle
+//         let voiceBody = document.getElementById("voiceBody");
 //         voiceBody.classList.toggle("VoiceBody");
 //         voiceBody.classList.toggle("viewNone");
 //     });
 
 //     if (speech == true) {
-//         recognition.start()
+//         let voiceBody = document.getElementById("voiceBody");
+//         voiceBody.classList.toggle("viewNone");
+//         recognition.start();
 //     }
 // });
+
+// // Text-to-speech function
+// function speak(text, lang) {
+//     const speechSynthesis = window.speechSynthesis;
+//     const utterance = new SpeechSynthesisUtterance(text);
+//     utterance.lang = lang; // Set the language for speech
+//     speechSynthesis.speak(utterance);
+// }
+
+
+
+
 
 
 //send the msg
